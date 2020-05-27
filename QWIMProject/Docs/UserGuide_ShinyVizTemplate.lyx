@@ -1,0 +1,2470 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\let\counterwithout\relax
+\let\counterwithin\relax
+
+\usepackage{chngcntr}
+\usepackage{ifthen}
+\usepackage{graphicx}
+\usepackage{fontawesome}
+\usepackage{etoolbox}
+\usepackage{fancybox}
+\usepackage{url}
+\usepackage{pdfsync}
+\usepackage[nottoc]{tocbibind}
+\usepackage{xcolor}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{polyglossia}
+\usepackage[style=authoryear,giveninits=true,dashed=false,isbn=false,doi=false,maxbibnames=99,maxcitenames=2,uniquelist=false,uniquename=false,url=false,date=year]{biblatex}
+
+%% https://tex.stackexchange.com/questions/187643/biblatex-how-can-i-suppress-some-fields-for-multiple-entry-types
+% \AtEveryBibitem{\ifthenelse{\ifentrytype{book}\OR\ifentrytype{collection}\OR\ifentrytype{journaltitle}\OR\ifentrytype{incollection}}{\clearfield{urlyear}\clearfield{review}\clearfield{series}}{}}
+
+
+\definecolor{darkblue}{rgb}{0,0,0.8}
+\definecolor{BlueViolet}{RGB}{138,43,226}
+\definecolor{HunterGreen}{rgb}{0.58,0.15,0.26}
+\definecolor{VeryDarkViolet}{RGB}{76,12,132}
+\definecolor{Purple}{RGB}{128,0,128}
+\definecolor{SeaGreen}{RGB}{46,139,87}
+\definecolor{DarkSlateGrey}{RGB}{47,79,79}
+\definecolor{Magenta}{RGB}{255,0,255}
+\definecolor{DarkBlue}{RGB}{0,0,139}
+\definecolor{DarkSlateBlue}{rgb}{72,61,139}
+\definecolor{Navy}{rgb}{0,0,128}
+\definecolor{MidnightBlue}{rgb}{25,25,112}
+\definecolor{Maroon}{rgb}{128,0,0}
+\definecolor{Plum}{rgb}{.5,0,1}
+\definecolor{White}{rgb}{255,255,255}
+\definecolor{ArylideYellow}{rgb}{233,214,107}
+\definecolor{DarkViolet}{rgb}{148,0,211}
+\definecolor{DarkScarlet}{rgb}{86,3,25}
+\definecolor{BostonUnivRed}{rgb}{204,0,0}
+\definecolor{Cerulean}{rgb}{0,123,167}
+\definecolor{CeruleanBlue}{rgb}{0.16,0.32,0.75}
+\definecolor{BrandeisBlue}{rgb}{0.0,0.44,1.0}
+\definecolor{BallBlue}{rgb}{0.13,0.67,0.8}
+\definecolor{BurntUmber}{rgb}{138,51,36}
+\definecolor{Rosewood}{rgb}{101,0,11}
+\definecolor{SpringBud}{rgb}{167,252,0}
+\definecolor{Violet}{rgb}{143,0,255}
+\definecolor{Bazaar}{rgb}{152,119,123}
+\definecolor{BananaYellow}{rgb}{1.0,0.88,0.21}
+\definecolor{Aureolin}{rgb}{0.99,0.93,0.0}
+\definecolor{ArylideYellow}{rgb}{0.91,0.84,0.42}
+\definecolor{Amber}{rgb}{1.0,0.75,0.0}
+\definecolor{Amethyst}{rgb}{0.6,0.4,0.8}
+\definecolor{Asparagus}{rgb}{0.53,0.66,0.42}
+\definecolor{ArmyGreen}{rgb}{0.29,0.33,0.13}
+\definecolor{CadmiumGreen}{rgb}{0.0,0.42,0.24}
+\definecolor{CadmiumRed}{rgb}{0.89,0.0,0.13}
+\definecolor{BrilliantLavender}{rgb}{0.96, 0.73, 1.0}
+\definecolor{BrightCerulean}{rgb}{0.11, 0.67, 0.84}
+\definecolor{Capri}{rgb}{0.0, 0.75, 1.0}
+\definecolor{CelestialBlue}{rgb}{0.29, 0.59, 0.82}
+
+%\definecolor{colorForCitedReferences}{RGB}{153,51,51}
+\definecolor{colorForCitedReferences}{RGB}{0,51,204}
+
+\hypersetup{
+  	colorlinks=true,
+    citecolor=colorForCitedReferences,  	
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\graphicspath {{graphics}}  % th efolder where all images, plots, graphs, etc are stored
+
+%% to force all inline math to look the same as math in equations (large integral signs, full-size numerator and denominator in fractions etc).
+
+\everymath{\displaystyle}
+\usepackage{tocstyle}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+\AtBeginDocument{%
+\DeclareNameAlias{sortname}{family-given}%
+}
+
+% https://tex.stackexchange.com/questions/361414/link-button-instead-of-complete-url-in-bibliography
+% \AtBeginEnvironment{thebibliography}{\def\url#1{\href{#1}{\faExternalLink}}}
+% \DeclareFieldFormat{url}{\mkbibacro{URL}\addcolon\space\href{#1}{\faExternalLink}}
+
+% https://tex.stackexchange.com/questions/48400/biblatex-make-title-hyperlink-to-dois-url-or-isbn/48409#48409
+% https://tex.stackexchange.com/questions/471424/how-to-make-biblatex-biber-aware-of-url-field-in-phdthesis
+\newbibmacro{string+doiurlisbn}[1]{%
+  \iffieldundef{doi}{%
+    \iffieldundef{url}{%
+      \iffieldundef{isbn}{%
+        \iffieldundef{issn}{%
+          #1%
+        }{%
+          \href{http://books.google.com/books?vid=ISSN\thefield{issn}}{#1}%
+        }%
+      }{%
+        \href{http://books.google.com/books?vid=ISBN\thefield{isbn}}{#1}%
+      }%
+    }{%
+      \href{\thefield{url}}{#1}%
+    }%
+  }{%
+    \href{http://dx.doi.org/\thefield{doi}}{#1}%
+  }%
+}
+
+
+\DeclareFieldFormat{title}{%
+  \usebibmacro{string+doiurlisbn}{\mkbibemph{#1}}}
+\DeclareFieldFormat
+  [article,inbook,incollection,inproceedings,patent,thesis,unpublished]
+  {title}{\usebibmacro{string+doiurlisbn}{\mkbibquote{#1\isdot}}}
+\DeclareFieldFormat
+  [suppbook,suppcollection,suppperiodical,techreport]
+  {title}{\usebibmacro{string+doiurlisbn}{#1}}
+
+%% https://tex.stackexchange.com/questions/97722/enclosing-issue-number-in-parentheses
+\usepackage{xpatch}
+
+% No dot before number of articles
+\xpatchbibmacro{volume+number+eid}{%
+  \setunit*{\adddot}%
+}{%
+}{}{}
+
+% Number of articles in parentheses
+\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
+
+%% http://tex.stackexchange.com/questions/60209/how-to-add-an-extra-level-of-sections-with-headings-below-subsubsection
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+            {-2.5ex\@plus -1ex \@minus -.25ex}%
+            {1.25ex \@plus .25ex}%
+            {\normalfont\normalsize\bfseries}}
+\makeatother
+
+%%  the lines below change how the numbered list appears. Possible choices are shown after the next 4 lines
+\renewcommand{\labelenumi}{\arabic{enumi})}
+\renewcommand{\labelenumii}{\arabic{enumi}.\alph{enumii})}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\alph{enumii}.\Roman{enumiii})}
+\renewcommand{\labelenumiv}{\arabic{enumi}.\alph{enumii}.\Roman{enumiii}.\Alph{enumiv})}
+
+%% for author and year hyperlink
+%% https://tex.stackexchange.com/questions/15951/hyperlink-name-with-biblatex-authoryear-biblatex-1-4b
+\DeclareFieldFormat{citehyperref}{%
+  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+  \bibhyperref{#1}}
+
+\DeclareFieldFormat{textcitehyperref}{%
+  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+  \bibhyperref{%
+    #1%
+    \ifbool{cbx:parens}
+      {\bibcloseparen\global\boolfalse{cbx:parens}}
+      {}}}
+
+\savebibmacro{cite}
+\savebibmacro{textcite}
+
+\renewbibmacro*{cite}{%
+  \printtext[citehyperref]{%
+    \restorebibmacro{cite}%
+    \usebibmacro{cite}}}
+
+\renewbibmacro*{textcite}{%
+  \ifboolexpr{
+    ( not test {\iffieldundef{prenote}} and
+      test {\ifnumequal{\value{citecount}}{1}} )
+    or
+    ( not test {\iffieldundef{postnote}} and
+      test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
+  }
+    {\DeclareFieldAlias{textcitehyperref}{noformat}}
+    {}%
+  \printtext[textcitehyperref]{%
+    \restorebibmacro{textcite}%
+    \usebibmacro{textcite}}}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures false
+\graphics default
+\default_output_format pdf5
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder true
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle false
+\pdf_quoted_options "colorlinks=true,citecolor=blue"
+\papersize letterpaper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine biblatex
+\cite_engine_type authoryear
+\biblio_style plain
+\biblatex_bibstyle authoryear
+\biblatex_citestyle authoryear
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.6cm
+\topmargin 2cm
+\rightmargin 1.6cm
+\bottommargin 2cm
+\headheight 1cm
+\headsep 1cm
+\footskip 0.5cm
+\secnumdepth 4
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\bullet 1 0 24 -1
+\bullet 3 0 5 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+User guide for Shiny interactive visualizer template
+\end_layout
+
+\begin_layout Author
+Cristian Homescu
+\end_layout
+
+\begin_layout Date
+May 2020
+\end_layout
+
+\begin_layout Abstract
+This document is an user guide for Shiny interactive visualizer template
+ based on semantic.dashboard and shiny.semantic R packages (which incorporates
+ SemanticUI and its newer community fork FomanticUI).
+ It provides an overview, the main concepts and the rationales for the correspon
+ding folder and code structure.
+ It also identifies specific steps:
+\end_layout
+
+\begin_layout Itemize
+to change visual elements (interactive plots and tables) within existing
+ tabs and subtabs
+\end_layout
+
+\begin_layout Itemize
+to modify Shiny actions within existing tabs and/or subtabs
+\end_layout
+
+\begin_layout Itemize
+to add visual elements to existing tabs and/or subtabs
+\end_layout
+
+\begin_layout Itemize
+to incorporate new Shiny actions to existing tabs and/or subtabs
+\end_layout
+
+\begin_layout Itemize
+to add new tabs and/or subtabs
+\end_layout
+
+\begin_layout Itemize
+to create another visualizer starting from the template
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Overview of the Shiny visualizer template
+\end_layout
+
+\begin_layout Subsection
+Main concepts
+\end_layout
+
+\begin_layout Standard
+The visualizer consists of multiple tabs and subtabs, with each tab encapsulated
+ using modules (each one implemented in its own file).
+ We rely on Shiny reactive values to use as arguments to functions within
+ the modules.
+ Each function in the code is either a collection of function calls or an
+ implementation of a specific task, making the code simpler to understand
+ and to debug.
+\end_layout
+
+\begin_layout Standard
+This approach is meant to significantly simplify the development, enhancement
+ and maintenance of codes used to construct the Shiny visualizer.
+\end_layout
+
+\begin_layout Subsection
+Required Software (and versions)
+\end_layout
+
+\begin_layout Standard
+You would need RStudio version 1.3.959 (or newer) and R version 3.6.3 (not another
+ version).
+\end_layout
+
+\begin_layout Standard
+To download and set up the appropriate versions of required R packages,
+ you would need to run file 
+\series bold
+\color brown
+SetupPackages.R
+\series default
+\color inherit
+, which contains a snapshot date of May 25, 2020.
+\end_layout
+
+\begin_layout Subsection
+Overall code structure
+\end_layout
+
+\begin_layout Standard
+The file to run is 
+\series bold
+\color brown
+Run_Shiny_Viz.R
+\series default
+\color inherit
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The rest of the code is within folder 
+\color purple
+Viz_Shiny_Modules
+\color inherit
+, which contains five subfolders:
+\end_layout
+
+\begin_layout Itemize
+
+\color purple
+Inputs
+\end_layout
+
+\begin_layout Itemize
+
+\color purple
+Server_Modules
+\end_layout
+
+\begin_layout Itemize
+
+\color purple
+UI_Modules
+\end_layout
+
+\begin_layout Itemize
+
+\color purple
+Utils
+\end_layout
+
+\begin_layout Itemize
+
+\color purple
+www
+\end_layout
+
+\begin_layout Standard
+The Shiny visualizer is created through an UI function and an Server function,
+ implemented in file 
+\series bold
+\color brown
+app.R
+\series default
+\color inherit
+ (in folder 
+\color purple
+Viz_Shiny_Modules)
+\end_layout
+
+\begin_layout Standard
+Each tab of the visualizer is implemented through two corresponding files:
+ one in folder 
+\color purple
+Server_Modules
+\color inherit
+ and one in folder 
+\color purple
+UI_Modules
+\color inherit
+.
+\end_layout
+
+\begin_layout Standard
+The 
+\color purple
+www
+\color inherit
+ folder contains any static images (such as snapshots or background images)
+ which are to be incorporated within Shiny visualizer.
+ As an example it contains the file 
+\series bold
+\color brown
+LogoGraphite.png
+\series default
+\color inherit
+, which is displayed in the title of the dashboard.
+\end_layout
+
+\begin_layout Standard
+The 
+\color purple
+Inputs
+\color inherit
+ folder contains two files, one containing saved data and the other one
+ saved functions (if necessary), which are used within Shiny.
+\end_layout
+
+\begin_layout Standard
+The 
+\color purple
+Utils
+\color inherit
+ folder contains functions to save and to retrieve data and functions, and
+ to set default values for input values and other variables.
+\end_layout
+
+\begin_layout Standard
+Additional details for these folders are given in next sections.
+\end_layout
+
+\begin_layout Subsection
+Working directories
+\end_layout
+
+\begin_layout Standard
+One of the challenges with Shiny codes is due to the fact that the working
+ directory changes as soon as we run the Shiny codes: from working directory
+ of the main folder (as defined through an RProj file associated with the
+ main folder) to a subfolder (associated with Shiny) of the main folder.
+\end_layout
+
+\begin_layout Standard
+For the Shiny visualizer template described in this document, the Shiny
+ working directory is the subfolder 
+\color purple
+VizTemplate/Viz_Shiny_Modules
+\end_layout
+
+\begin_layout Subsection
+Running the code to get the interactive visualizer showing up on your computer
+\end_layout
+
+\begin_layout Standard
+Open the RProject file, run 
+\series bold
+\color brown
+SetupPackages.R
+\series default
+\color inherit
+, then run the file 
+\series bold
+\color brown
+Run_Shiny_Viz.R
+\series default
+\color inherit
+.
+\end_layout
+
+\begin_layout Standard
+Data and functions located in files outside Shiny working directory have
+ to be retrieved and stored in files within Shiny working directory.
+ The main function 
+\color blue
+RunShinyViz
+\color inherit
+ has an argument 
+\series bold
+\color magenta
+saveDataAndFunctions_RSV
+\series default
+\color inherit
+ which is set to TRUE or FALSE, controlling whether the operation of 
+\begin_inset Quotes eld
+\end_inset
+
+save and retrieve data
+\begin_inset Quotes erd
+\end_inset
+
+ has to be performed (either for the first time, or reperformed due to change
+ in data) or not.
+\end_layout
+
+\begin_layout Standard
+The second argument of 
+\color blue
+RunShinyViz
+\color inherit
+ main function contains the Shiny working directory.
+\end_layout
+
+\begin_layout Subsection
+Deploying the interactive visualizer on website shinyapps.io
+\end_layout
+
+\begin_layout Standard
+Assuming that the local interactive visualizer (obtained in the previous
+ subsection) has the desired visual features, you can also deploy it (
+\begin_inset Quotes eld
+\end_inset
+
+publish
+\begin_inset Quotes erd
+\end_inset
+
+ it) on website shinyapps.io, after creating an account on that website.
+ 
+\end_layout
+
+\begin_layout Standard
+To deploy it, you need to run the file 
+\series bold
+\color brown
+PublishViz.R
+\series default
+\color inherit
+, with appropriate changes.
+ For example, you would need to change the inputs of function 
+\color blue
+rsconnect::setAccountInfo
+\color inherit
+ (within function 
+\color blue
+SetShinyAppAccount
+\color inherit
+), namely name, token and secret corresponding to account shinyapps.io.
+\end_layout
+
+\begin_layout Standard
+If you want to deploy another visualizer, you may need to add another function,
+ similar to function
+\color blue
+ PublishViz_VizTemplate
+\color inherit
+, and then update accordingly the if-else within function 
+\color blue
+PublishViz.
+\end_layout
+
+\begin_layout Standard
+The deployed visualizer can be viewed in Google Chrome by clicking on a
+ shinyapps.io link (if interested in vieweing it, please reach out to me
+ for the link).
+\end_layout
+
+\begin_layout Section
+Main UI and Server functions
+\end_layout
+
+\begin_layout Standard
+The Shiny visualizer relies on two main functions: an UI function and an
+ Server function, both implemented in file 
+\series bold
+\color brown
+app.R
+\end_layout
+
+\begin_layout Subsection
+UI function
+\end_layout
+
+\begin_layout Standard
+Since the visualizer relies on R semantic.dashboard package, the UI function
+ calls 3 functions (implemented in file 
+\series bold
+\color brown
+UI_Main.R
+\series default
+\color inherit
+ in folder 
+\color purple
+UI_Modules
+\color inherit
+):
+\end_layout
+
+\begin_layout Enumerate
+
+\color blue
+DisplayDashboardHeader
+\end_layout
+
+\begin_layout Enumerate
+
+\color blue
+DisplayDashboardSidebar
+\end_layout
+
+\begin_layout Enumerate
+
+\color blue
+DisplayDashboardBody
+\end_layout
+
+\begin_layout Subsection
+Server function
+\end_layout
+
+\begin_layout Standard
+The server function fulfills three major tasks:
+\end_layout
+
+\begin_layout Enumerate
+Creates three structures of Shiny reactive values
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+structure (named 
+\series bold
+\color magenta
+reactiveUserInputs
+\series default
+\color inherit
+) storing the IDs of inputs explicitly passed by the user
+\end_layout
+
+\begin_layout Enumerate
+structure (named 
+\series bold
+\color magenta
+reactiveInnerVariables
+\series default
+\color inherit
+) storing the variables calculated or updated throughout the code 
+\end_layout
+
+\begin_layout Enumerate
+structure (named 
+\series bold
+\color magenta
+reactiveTriggers
+\series default
+\color inherit
+) storing the IDs of triggers (such as Shiny action buttons or action links)
+ that would activate Shiny actions 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Observes events to update the reactive values of the 3 structures defined
+ above
+\end_layout
+
+\begin_layout Enumerate
+Renders content in the visualizer (one function per visualizer tab) 
+\end_layout
+
+\begin_layout Standard
+The structure of Shiny reactive values is similar to a list, but with special
+ capabilities for reactive programming.
+ When one writes to it, it notifies any reactive functions within the code
+ that depend on that value.
+\end_layout
+
+\begin_layout Standard
+The first two major tasks are implemented through functions in the file
+ 
+\series bold
+\color brown
+Server_ReactiveVars.R
+\series default
+\color inherit
+, while rendering the content is performed through functions implemented
+ in a file corresponding to each tab.
+\end_layout
+
+\begin_layout Section
+Implementation details regarding external data and functions
+\end_layout
+
+\begin_layout Subsection
+Types of input data files
+\end_layout
+
+\begin_layout Standard
+The input files can be of any type that you want (Excel spreadsheets, text
+ files, JSON files, RData or RDS files, files with qs, feather, arrow extensions
+), provided that there are R functions (or packages) which can read those
+ files within R code.
+ The input datafiles used within the file 
+\series bold
+\color brown
+SaveInfo.R
+\series default
+\color inherit
+ are meant only to exemplify the procedure.
+ 
+\end_layout
+
+\begin_layout Subsection
+When data and functions are stored in files outside Shiny working directory
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Using-data-and-functions-outside-of-Shiny-working-directory"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+One of the main challenges of programming for a Shiny visualizer is that
+ Shiny has a different working directory then the one defined in the RProj
+ file of the project.
+ Moreover, in case we want to 
+\begin_inset Quotes eld
+\end_inset
+
+publish
+\begin_inset Quotes erd
+\end_inset
+
+ the Shiny visualizer through RStudio Connect or shinyapps.io, we could only
+ use files within the Shiny working directory, otherwise these files cannot
+ be retrieved for packaging into a container.
+\end_layout
+
+\begin_layout Standard
+This challenge is addressed by a combination of two approaches:
+\end_layout
+
+\begin_layout Enumerate
+within the Shiny code use only relative paths which are inside the Shiny
+ working directory
+\end_layout
+
+\begin_layout Enumerate
+for any data files and functions in files outside the Shiny working directory,
+ store them into files located within the Shiny working directory
+\end_layout
+
+\begin_layout Standard
+The operations of saving of data and functions is performed within the file
+ 
+\series bold
+\color brown
+SaveInfo.R
+\series default
+\color inherit
+ in the folder 
+\color purple
+Utils
+\color inherit
+.
+ Data and functions located in files outside the Shiny working directory
+ are stored in 2 files in the folder Inputs within the Shiny working directory:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color brown
+SavedDataForShiny.qs
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color brown
+SavedFunctionsForShiny.qs
+\end_layout
+
+\begin_layout Standard
+The file 
+\series bold
+\color brown
+GetSavedInfo.R
+\series default
+\color inherit
+ in folder 
+\color purple
+Utils
+\color inherit
+ reads the content of these files, and stores them into two structures which
+ are used within Shiny: 
+\series bold
+\color magenta
+objSavedData
+\series default
+\color inherit
+ and, respectively, 
+\series bold
+\color magenta
+objSavedFunctions
+\series default
+\color inherit
+.
+\end_layout
+
+\begin_layout Standard
+An example of using functions which were stored as elements in the list
+ retrieved from file 
+\series bold
+\color brown
+SavedFunctionsForShiny.qs
+\series default
+\color inherit
+ is in function 
+\color blue
+CalcPlotTimeSeries
+\color inherit
+ CalcPlotTimeSeries of file 
+\series bold
+\color brown
+Server_TabAnalysisOne.R
+\series default
+\color inherit
+.
+ Instead of using 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ggplot2::ylab(label = "Value")
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+the code uses 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+funcs_MVSTA1_CPTS[["Func_ggplot_ylab"]](label = "Value")
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where the function argument named funcs_MVSTA1_CPTS is the list of saved
+ functions retrieved from file 
+\series bold
+\color brown
+SavedFunctionsForShiny.qs
+\end_layout
+
+\begin_layout Subsection
+Default values for inputs and other variables
+\end_layout
+
+\begin_layout Standard
+These default values are set within the file 
+\series bold
+\color brown
+DefaultValues.R
+\series default
+\color inherit
+ in folder Utils.
+ The functiions within this file are called within file 
+\series bold
+\color brown
+SaveInfo.R
+\series default
+\color inherit
+, and the resulting default values are stored as 
+\shape italic
+\color blue
+DefaultInputs
+\shape default
+\color inherit
+ component or 
+\shape italic
+\color blue
+DefaultInnerVariables
+\shape default
+\color inherit
+ component in the list saved in file 
+\series bold
+\color brown
+SavedDataForShiny.qs 
+\end_layout
+
+\begin_layout Subsection
+Icons and other useful info for SemanticUI
+\end_layout
+
+\begin_layout Standard
+The visualizer framework is relying on R packages shiny.semantic and semantic.dash
+board, which in turn rely on 
+\begin_inset CommandInset href
+LatexCommand href
+name "SemanticUI"
+target "https://semantic-ui.com/"
+literal "false"
+
+\end_inset
+
+ (and its newer community fork 
+\begin_inset CommandInset href
+LatexCommand href
+name "FomanticUI"
+target "https://fomantic-ui.com/"
+literal "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Semantic is a development framework that helps create beautiful, responsive
+ layouts using human-friendly HTML.
+\end_layout
+
+\begin_layout Standard
+The 2 R packages makes it asy to incorporate the elements of SemanticUI
+ (and FomanticUI), including the 
+\begin_inset CommandInset href
+LatexCommand href
+name "icon set"
+target "https://fomantic-ui.com/elements/icon.html"
+literal "false"
+
+\end_inset
+
+, into the interactive visualizer.
+\end_layout
+
+\begin_layout Section
+How to create another visualizer starting from the template
+\end_layout
+
+\begin_layout Standard
+Copy the subfolder in which the template is located (Visualization/SemanticDashb
+oardTemplate) to another subfolder within Visualization folder.
+ Rename the folder according to your preferences.
+ 
+\end_layout
+
+\begin_layout Standard
+To exemplify, let's assume that the copy of the SemanticDashboardTemplate
+ folder is renamed TheDashboardFolder.
+ Then one also need to change the path of the argument shinyWorkingDir_RSV.
+ For this exemplification the code 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+shinyWorkingDir_RSV = base::file.path("Visualization","SemanticDashboardTemplate"
+),
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+becomes
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+shinyWorkingDir_RSV = base::file.path("Visualization","TheDashboardFolder"),
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+How to add a new tab to visualizer 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:How-to-add-a-new-tab"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Adding a new tab to visualizer is done by creating two files for this tab,
+ one in folder 
+\color purple
+UI_Modules
+\color inherit
+ and one in folder 
+\color purple
+Shiny_Modules
+\color inherit
+.
+ To exemplify, let us consider that these files are named as 
+\series bold
+\color brown
+UI_TabExtra.R
+\series default
+\color inherit
+ and 
+\series bold
+\color brown
+Server_TabExtra.R
+\end_layout
+
+\begin_layout Standard
+Then one needs to 
+\end_layout
+
+\begin_layout Itemize
+source file 
+\series bold
+\color brown
+Server_TabExtra.R
+\series default
+\color inherit
+ at end of file 
+\series bold
+\color brown
+GetSavedInfo.R
+\series default
+\color inherit
+ (in folder 
+\color purple
+Utils
+\color inherit
+), after the other files sourced there
+\end_layout
+
+\begin_layout Itemize
+source file 
+\series bold
+\color brown
+UI_TabExtra.R
+\series default
+\color inherit
+ at beginning of file 
+\series bold
+\color brown
+UI_Main.R
+\series default
+\color inherit
+, after the other files sourced there.
+\end_layout
+
+\begin_layout Standard
+
+\color blue
+DisplayContent
+\color inherit
+ is the main function in file 
+\series bold
+\color brown
+UI_TabExtra.R
+\series default
+\color inherit
+, while 
+\color blue
+RenderContent
+\color inherit
+ is the main function in file 
+\series bold
+\color brown
+Server_TabExtra.R
+\series default
+\color inherit
+.
+ Then 
+\color blue
+DisplayContent
+\color inherit
+ is called within function 
+\color blue
+DisplayDashboardBody
+\color inherit
+ of file 
+\series bold
+\color brown
+UI_Main.R
+\series default
+\color inherit
+, while 
+\color blue
+RenderContent
+\color inherit
+ is called within function theServer of file 
+\series bold
+\color brown
+MainAppViz.R
+\series default
+\color inherit
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The corresponding sidebar is added to function 
+\color blue
+DisplayDashboardSidebar
+\color inherit
+ in file 
+\series bold
+\color brown
+UI_Main.R
+\series default
+\color inherit
+.
+ We also add the corresponding tab ID to function 
+\color blue
+SetTabIDs_SidebarMenu
+\color inherit
+ in file 
+\series bold
+\color brown
+UI_Main.R
+\series default
+\color inherit
+.
+\end_layout
+
+\begin_layout Standard
+The functions implemented in the file 
+\series bold
+\color brown
+Server_TabExtra.R
+\series default
+\color inherit
+ would use as arguments the set (or a subset) of the 5 main data structures
+ utilized within the Shiny code:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color magenta
+objSavedData
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color magenta
+objSavedFunctions
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color magenta
+reactiveUserInputs
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color magenta
+reactiveInnerVariables
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color magenta
+reactiveTriggers
+\end_layout
+
+\begin_layout Standard
+We would also need to add subtabs and visual outputs (tables and/or interactive
+ plots) to this new visualizer tab.
+ The steps on how to do this are described in other sections.
+\end_layout
+
+\begin_layout Standard
+Regarding examples in the current visualizer template, the user may consider
+ the tabs 
+\color blue
+Data
+\color inherit
+, 
+\color blue
+Summary
+\color inherit
+, 
+\color blue
+ResultsTwo
+\color inherit
+ and 
+\color blue
+AnalysisOne
+\color inherit
+.
+\end_layout
+
+\begin_layout Section
+How to add a new subtab to an existing tab in visualizer 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:How-to-add-a-new-subtab"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To exemplify, let's consider that the existing tab is named 
+\color blue
+TabOne
+\color inherit
+ and thus implemented through files 
+\series bold
+\color brown
+UI_TabOne.R
+\series default
+\color inherit
+ and 
+\series bold
+\color brown
+Server_TabOne.R
+\series default
+\color inherit
+.
+ We want to add a subtab named 
+\color blue
+SubTabExtra
+\color inherit
+.
+ 
+\end_layout
+
+\begin_layout Standard
+This additional subtab will be incorporated into the visualizer UI through
+ the function DisplayContent of file 
+\series bold
+\color brown
+UI_TabOne.R
+\series default
+\color inherit
+, while its content will be rendered through a newly created function called
+ within function RenderContent of file 
+\series bold
+\color brown
+Server_TabOne.R
+\end_layout
+
+\begin_layout Standard
+The functions implemented in the file 
+\series bold
+\color brown
+Server_TabOne.R
+\series default
+\color inherit
+ would use as arguments the set (or a subset) of the 5 main data structures
+ utilized within the Shiny code:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color magenta
+objSavedData
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color magenta
+objSavedFunctions
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color magenta
+reactiveUserInputs
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color magenta
+reactiveInnerVariables
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color magenta
+reactiveTriggers
+\end_layout
+
+\begin_layout Standard
+We would also need to add visual outputs (tables and/or interactive plots)
+ to this new visualizer subtab.
+ The steps on how to do this are described in other sections.
+\end_layout
+
+\begin_layout Standard
+Regarding examples in the current visualizer template, the user may consider
+ the subtabs of tabs 
+\color blue
+AnalysisOne
+\color inherit
+, 
+\color blue
+ResultsOne
+\color inherit
+ and 
+\color blue
+ResultsTwo
+\color inherit
+.
+\end_layout
+
+\begin_layout Section
+How to add new visual outputs to a visualizer tab 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:How-to-add-new-visual-outputs"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When adding new visual outputs (such as interactive plots or tables) we
+ need to consider inputs, datasets, display and rendering of the inputs
+ and outputs.
+ We describe the steps in next subsection.
+\end_layout
+
+\begin_layout Subsection
+Procedure steps
+\end_layout
+
+\begin_layout Enumerate
+Decide what is needed 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+dataset(s)
+\end_layout
+
+\begin_layout Enumerate
+input(s)
+\end_layout
+
+\begin_layout Enumerate
+type of visual output
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Decide which tab/subtab should contain the new visual output
+\end_layout
+
+\begin_layout Enumerate
+Steps related to dataset
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+if dataset is already used or incorporated within Shiny code for the visualizer,
+ it can be reused for the new visual output
+\end_layout
+
+\begin_layout Enumerate
+if dataset is stored within file(s) located in folder(s) outside Shiny working
+ directory, then follow the steps described in subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Using-data-and-functions-outside-of-Shiny-working-directory"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Steps related to input(s)
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+if input(s) are already used or incorporated within Shiny code for the visualize
+r, it can be reused for the new visual output
+\end_layout
+
+\begin_layout Enumerate
+if input(s) need to be added to Shiny code, then follow the steps described
+ in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:How-to-add-inputs"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Steps related to functions for visual output
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+if the function(s) to obtain the visual output belong to an R package (external
+ or internal), it can be used directly within Shiny code
+\end_layout
+
+\begin_layout Enumerate
+if the function(s) to obtain the visual output are implemented in within
+ file(s) located in folder(s) outside Shiny working directory, then follow
+ the steps described in subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Using-data-and-functions-outside-of-Shiny-working-directory"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Steps related to adding new visual output to a subtab
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+if tab or subtab does not exist yet in Shiny code of the visualizer, create
+ it following the steps described in sections 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:How-to-add-a-new-tab"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:How-to-add-a-new-subtab"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+if subtab already exists within Shiny code of the visualizer, add the new
+ visual output following the steps described in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:How-to-add-new-visual-outputs"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Going through an example
+\end_layout
+
+\begin_layout Standard
+To exemplify, let's consider that the existing tab is named 
+\color blue
+TabOne
+\color inherit
+ and thus implemented through files 
+\series bold
+\color brown
+UI_TabOne.R
+\series default
+\color inherit
+ and 
+\series bold
+\color brown
+Server_TabOne.R
+\series default
+\color inherit
+.
+ We also assume that name of existing subtab is 
+\color blue
+subTabA
+\color inherit
+.
+\end_layout
+
+\begin_layout Standard
+We would need to update some existing functions, and add new functions,
+ in both 
+\series bold
+\color brown
+UI_TabOne.R
+\series default
+\color inherit
+ and 
+\series bold
+\color brown
+Server_TabOne.R
+\series default
+\color inherit
+.
+\end_layout
+
+\begin_layout Standard
+We need to add functions in file 
+\series bold
+\color brown
+Server_TabOne.R
+\series default
+\color inherit
+ to obtain the required new visual outputs (tables and/or interactive plots).
+ The rendering function will provide the identifier ID of the new visual
+ output, ID which is then used within the UI file.
+ Let's denote this ID as 
+\series bold
+\color magenta
+outputID_theNewVisualOutput
+\series default
+\color inherit
+.
+\end_layout
+
+\begin_layout Standard
+To ensure that this visual ouput would change automatically when a corresponding
+ input or variable would change, we use observeEvent to connect this visual
+ output with one of the three structures of reactive variables:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color magenta
+reactiveUserInputs
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color magenta
+reactiveInnerVariables
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color magenta
+reactiveTriggers
+\end_layout
+
+\begin_layout Standard
+We need to update function DisplayContent in file 
+\series bold
+\color brown
+UI_TabOne.R
+\series default
+\color inherit
+, by incorporating the ID of the corresponding visual component.
+ Depending on the situation, it can be done through function calls such
+ as
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+shiny::uiOutput(outputId = "
+\series bold
+\color magenta
+outputID_theNewVisualOutput
+\series default
+\color blue
+
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+plotly::plotlyOutput(outputId = "
+\series bold
+\color magenta
+outputID_theNewVisualOutput
+\series default
+\color blue
+
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+DT::dataTableOutput(outputId = "
+\series bold
+\color magenta
+outputID_theNewVisualOutput
+\series default
+\color blue
+
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+rhandsontable::rHandsontableOutput(outputId = "
+\series bold
+\color magenta
+outputID_theNewVisualOutput
+\series default
+\color blue
+
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+semantic.dashboard::valueBoxOutput(outputId = "
+\series bold
+\color magenta
+outputID_theNewVisualOutput
+\series default
+\color blue
+
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+If we also need to connect Shiny actions to the new visual outputs, steps
+ on how to do this are described in other sections.
+\end_layout
+
+\begin_layout Standard
+Regarding examples in the current visualizer template, the user may consider
+ the time series plot in second subtab of tab 
+\color blue
+AnalysisOne
+\color inherit
+, the table and the plot in tab 
+\color blue
+AnalysisTwo
+\color inherit
+, the tables in tabs 
+\color blue
+AnalysisThree
+\color inherit
+ and 
+\color blue
+ResultsTwo
+\color inherit
+.
+\end_layout
+
+\begin_layout Section
+How to add new inputs to visualizer 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:How-to-add-inputs"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The tab 
+\color blue
+Data
+\color inherit
+ is currently used for user inputs, and it is likely that the corresponding
+ code needs to be updated.
+ If the new inputs are to be utilized in other tabs, then the codes for
+ those tabs would have to be updated as well.
+\end_layout
+
+\begin_layout Standard
+We need to update function 
+\color blue
+SetValues_UserInputs
+\color inherit
+ in file 
+\series bold
+\color brown
+defaultValues.R
+\end_layout
+
+\begin_layout Standard
+We also need to update the functions related to the structure reactiveUserInputs
+:
+\end_layout
+
+\begin_layout Itemize
+function 
+\color blue
+SetInitialValues_ReactiveUserInputs
+\color inherit
+ in file 
+\series bold
+\color brown
+Server_ReactiveVars.R
+\end_layout
+
+\begin_layout Itemize
+function 
+\color blue
+ObserveEvents_ReactiveUserInputs
+\color inherit
+ in file 
+\series bold
+\color brown
+Server_ReactiveVars.R
+\end_layout
+
+\begin_layout Standard
+Then perform the following:
+\end_layout
+
+\begin_layout Itemize
+update existing functions and, if necessary, add new functions in UI file
+ of corresponding visualizer tab
+\end_layout
+
+\begin_layout Itemize
+update existing functions and, if necessary, add new functions in Server
+ file of corresponding visualizer tab
+\end_layout
+
+\begin_layout Itemize
+check consistency of the identifiers used for inputs in both UI and Server
+ files of corresponding visualizer tab
+\end_layout
+
+\begin_layout Standard
+If we also need to add visual outputs (tables and/or interactive plots),
+ steps on how to do this are described in other sections.
+\end_layout
+
+\begin_layout Standard
+Regarding examples in the current visualizer template, the user may consider
+ the inputs shown in tab 
+\color blue
+Data
+\color inherit
+.
+\end_layout
+
+\begin_layout Section
+How to add new Shiny actions to visualizer 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:How-to-add-new-Shiny-actions"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We need to update the functions related to the structure reactiveTriggers:
+\end_layout
+
+\begin_layout Itemize
+function 
+\color blue
+SetInitialValues_ReactiveTriggers
+\color inherit
+ in file 
+\series bold
+\color brown
+Server_ReactiveVars.R
+\end_layout
+
+\begin_layout Itemize
+function 
+\color blue
+ObserveEvents_ReactiveTriggers
+\color inherit
+ in file 
+\series bold
+\color brown
+Server_ReactiveVars.R
+\end_layout
+
+\begin_layout Standard
+If we also need to add visual outputs (tables and/or interactive plots),
+ steps on how to do this are described in other sections.
+\end_layout
+
+\begin_layout Standard
+Regarding examples in the current visualizer template, the user may consider
+ the action buttons associated with the tab 
+\color blue
+Summary
+\color inherit
+ through the identifiers 
+\series bold
+\color magenta
+inputID_ActionButton_TabSummary_PortfolioValue
+\series default
+\color inherit
+ and 
+\series bold
+\color magenta
+inputID_ActionButton_TabSummary_DateLastReport
+\series default
+\color inherit
+.
+ The actions buttons are implemented in file 
+\series bold
+\color brown
+UI_TabSummary.R
+\end_layout
+
+\begin_layout Standard
+The corresponding actions are implemented in function 
+\color blue
+PerformShinyEvents
+\color inherit
+ of file 
+\series bold
+\color brown
+Server_TabSummary.R
+\series default
+\color inherit
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Snapshots of visualizer template
+\end_layout
+
+\begin_layout Standard
+We exemplify the visualizer output through a few snapshots.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Visualizer sidebar
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Menu_and_Tabs.PNG
+	lyxscale 30
+	width 70text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.2cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Content of Data visualizer tab
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Tab_Data.PNG
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.2cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Content of Data visualizer tab with minimized visual outputs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Tab_Data_Closed.PNG
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.2cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Content of Data visualizer tab with no sidebar shown
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Tab_Data_NoSidebar.PNG
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.2cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Content of AnalysisOne visualizer tab: time series in second subtab
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Tab_AnalysisOne_SubtabTwo_Series2.PNG
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.2cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Content of AnalysisOne visualizer tab: time series in second subtab
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Tab_AnalysisOne_SubtabTwo_Series5.PNG
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.2cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Content of AnalysisTwo visualizer tab
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Tab_AnalysisTwo.PNG
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.2cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Content of Summary visualizer tab
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Tab_Summary.PNG
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.2cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Content of ResultsTwo visualizer tab
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Tab_ResultsTwo_Original.PNG
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.2cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ResultsTwo visualizer tab: name of third column was changed as result of
+ actionButton in Summary tab
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Tab_ResultsTwo_FirstChange.PNG
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.2cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ResultsTwo visualizer tab: name of third column was changed again as result
+ of actionButton in Summary tab
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Tab_ResultsTwo_FirstChange.PNG
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.2cm
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
