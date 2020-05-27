@@ -1,0 +1,3870 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\let\counterwithout\relax
+\let\counterwithin\relax
+
+\usepackage{chngcntr}
+\usepackage{ifthen}
+\usepackage{graphicx}
+\usepackage{fontawesome}
+\usepackage{etoolbox}
+\usepackage{fancybox}
+\usepackage{url}
+\usepackage{pdfsync}
+\usepackage[nottoc]{tocbibind}
+\usepackage{xcolor}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{polyglossia}
+\usepackage[style=authoryear,giveninits=true,dashed=false,isbn=false,doi=false,maxbibnames=99,maxcitenames=2,uniquelist=false,uniquename=false,url=false,date=year]{biblatex}
+
+%% https://tex.stackexchange.com/questions/187643/biblatex-how-can-i-suppress-some-fields-for-multiple-entry-types
+% \AtEveryBibitem{\ifthenelse{\ifentrytype{book}\OR\ifentrytype{collection}\OR\ifentrytype{journaltitle}\OR\ifentrytype{incollection}}{\clearfield{urlyear}\clearfield{review}\clearfield{series}}{}}
+
+
+\definecolor{darkblue}{rgb}{0,0,0.8}
+\definecolor{BlueViolet}{RGB}{138,43,226}
+\definecolor{HunterGreen}{rgb}{0.58,0.15,0.26}
+\definecolor{VeryDarkViolet}{RGB}{76,12,132}
+\definecolor{Purple}{RGB}{128,0,128}
+\definecolor{SeaGreen}{RGB}{46,139,87}
+\definecolor{DarkSlateGrey}{RGB}{47,79,79}
+\definecolor{Magenta}{RGB}{255,0,255}
+\definecolor{DarkBlue}{RGB}{0,0,139}
+\definecolor{DarkSlateBlue}{rgb}{72,61,139}
+\definecolor{Navy}{rgb}{0,0,128}
+\definecolor{MidnightBlue}{rgb}{25,25,112}
+\definecolor{Maroon}{rgb}{128,0,0}
+\definecolor{Plum}{rgb}{.5,0,1}
+\definecolor{White}{rgb}{255,255,255}
+\definecolor{ArylideYellow}{rgb}{233,214,107}
+\definecolor{DarkViolet}{rgb}{148,0,211}
+\definecolor{DarkScarlet}{rgb}{86,3,25}
+\definecolor{BostonUnivRed}{rgb}{204,0,0}
+\definecolor{Cerulean}{rgb}{0,123,167}
+\definecolor{CeruleanBlue}{rgb}{0.16,0.32,0.75}
+\definecolor{BrandeisBlue}{rgb}{0.0,0.44,1.0}
+\definecolor{BallBlue}{rgb}{0.13,0.67,0.8}
+\definecolor{BurntUmber}{rgb}{138,51,36}
+\definecolor{Rosewood}{rgb}{101,0,11}
+\definecolor{SpringBud}{rgb}{167,252,0}
+\definecolor{Violet}{rgb}{143,0,255}
+\definecolor{Bazaar}{rgb}{152,119,123}
+\definecolor{BananaYellow}{rgb}{1.0,0.88,0.21}
+\definecolor{Aureolin}{rgb}{0.99,0.93,0.0}
+\definecolor{ArylideYellow}{rgb}{0.91,0.84,0.42}
+\definecolor{Amber}{rgb}{1.0,0.75,0.0}
+\definecolor{Amethyst}{rgb}{0.6,0.4,0.8}
+\definecolor{Asparagus}{rgb}{0.53,0.66,0.42}
+\definecolor{ArmyGreen}{rgb}{0.29,0.33,0.13}
+\definecolor{CadmiumGreen}{rgb}{0.0,0.42,0.24}
+\definecolor{CadmiumRed}{rgb}{0.89,0.0,0.13}
+\definecolor{BrilliantLavender}{rgb}{0.96, 0.73, 1.0}
+\definecolor{BrightCerulean}{rgb}{0.11, 0.67, 0.84}
+\definecolor{Capri}{rgb}{0.0, 0.75, 1.0}
+\definecolor{CelestialBlue}{rgb}{0.29, 0.59, 0.82}
+
+%\definecolor{colorForCitedReferences}{RGB}{153,51,51}
+\definecolor{colorForCitedReferences}{RGB}{0,51,204}
+
+\hypersetup{
+  	colorlinks=true,
+    citecolor=colorForCitedReferences,  	
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\graphicspath {{graphics}}  % th efolder where all images, plots, graphs, etc are stored
+
+%% to force all inline math to look the same as math in equations (large integral signs, full-size numerator and denominator in fractions etc).
+
+\everymath{\displaystyle}
+\usepackage{tocstyle}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+\AtBeginDocument{%
+\DeclareNameAlias{sortname}{family-given}%
+}
+
+% https://tex.stackexchange.com/questions/361414/link-button-instead-of-complete-url-in-bibliography
+% \AtBeginEnvironment{thebibliography}{\def\url#1{\href{#1}{\faExternalLink}}}
+% \DeclareFieldFormat{url}{\mkbibacro{URL}\addcolon\space\href{#1}{\faExternalLink}}
+
+% https://tex.stackexchange.com/questions/48400/biblatex-make-title-hyperlink-to-dois-url-or-isbn/48409#48409
+% https://tex.stackexchange.com/questions/471424/how-to-make-biblatex-biber-aware-of-url-field-in-phdthesis
+\newbibmacro{string+doiurlisbn}[1]{%
+  \iffieldundef{doi}{%
+    \iffieldundef{url}{%
+      \iffieldundef{isbn}{%
+        \iffieldundef{issn}{%
+          #1%
+        }{%
+          \href{http://books.google.com/books?vid=ISSN\thefield{issn}}{#1}%
+        }%
+      }{%
+        \href{http://books.google.com/books?vid=ISBN\thefield{isbn}}{#1}%
+      }%
+    }{%
+      \href{\thefield{url}}{#1}%
+    }%
+  }{%
+    \href{http://dx.doi.org/\thefield{doi}}{#1}%
+  }%
+}
+
+
+\DeclareFieldFormat{title}{%
+  \usebibmacro{string+doiurlisbn}{\mkbibemph{#1}}}
+\DeclareFieldFormat
+  [article,inbook,incollection,inproceedings,patent,thesis,unpublished]
+  {title}{\usebibmacro{string+doiurlisbn}{\mkbibquote{#1\isdot}}}
+\DeclareFieldFormat
+  [suppbook,suppcollection,suppperiodical]
+  {title}{\usebibmacro{string+doiurlisbn}{#1}}
+
+
+%% https://tex.stackexchange.com/questions/97722/enclosing-issue-number-in-parentheses
+\usepackage{xpatch}
+
+% No dot before number of articles
+\xpatchbibmacro{volume+number+eid}{%
+  \setunit*{\adddot}%
+}{%
+}{}{}
+
+% Number of articles in parentheses
+\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
+
+%% http://tex.stackexchange.com/questions/60209/how-to-add-an-extra-level-of-sections-with-headings-below-subsubsection
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+            {-2.5ex\@plus -1ex \@minus -.25ex}%
+            {1.25ex \@plus .25ex}%
+            {\normalfont\normalsize\bfseries}}
+\makeatother
+
+%%  the lines below change how the numbered list appears. Possible choices are shown after the next 4 lines
+\renewcommand{\labelenumi}{\arabic{enumi})}
+\renewcommand{\labelenumii}{\arabic{enumi}.\alph{enumii})}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\alph{enumii}.\Roman{enumiii})}
+\renewcommand{\labelenumiv}{\arabic{enumi}.\alph{enumii}.\Roman{enumiii}.\Alph{enumiv})}
+
+%% for author and year hyperlink
+%% https://tex.stackexchange.com/questions/15951/hyperlink-name-with-biblatex-authoryear-biblatex-1-4b
+\DeclareFieldFormat{citehyperref}{%
+  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+  \bibhyperref{#1}}
+
+\DeclareFieldFormat{textcitehyperref}{%
+  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+  \bibhyperref{%
+    #1%
+    \ifbool{cbx:parens}
+      {\bibcloseparen\global\boolfalse{cbx:parens}}
+      {}}}
+
+\savebibmacro{cite}
+\savebibmacro{textcite}
+
+\renewbibmacro*{cite}{%
+  \printtext[citehyperref]{%
+    \restorebibmacro{cite}%
+    \usebibmacro{cite}}}
+
+\renewbibmacro*{textcite}{%
+  \ifboolexpr{
+    ( not test {\iffieldundef{prenote}} and
+      test {\ifnumequal{\value{citecount}}{1}} )
+    or
+    ( not test {\iffieldundef{postnote}} and
+      test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
+  }
+    {\DeclareFieldAlias{textcitehyperref}{noformat}}
+    {}%
+  \printtext[textcitehyperref]{%
+    \restorebibmacro{textcite}%
+    \usebibmacro{textcite}}}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures false
+\graphics default
+\default_output_format pdf5
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder true
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle false
+\pdf_quoted_options "colorlinks=true,citecolor=blue"
+\papersize letterpaper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine biblatex
+\cite_engine_type authoryear
+\biblio_style plain
+\biblatex_bibstyle authoryear
+\biblatex_citestyle authoryear
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 3cm
+\rightmargin 2cm
+\bottommargin 3cm
+\headheight 1cm
+\headsep 1cm
+\footskip 0.5cm
+\secnumdepth 4
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\bullet 1 0 24 -1
+\bullet 3 0 5 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Machine learning for empirical asset pricing and risk premia forecasting
+\end_layout
+
+\begin_layout Author
+The authors
+\end_layout
+
+\begin_layout Date
+The date, 2020
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+Relative to traditional empirical methods in asset pricing, machine learning
+ accommodates a far more expansive list of potential predictor variables,
+ as well as richer specifications of functional form.
+ Machine learning methods can be successfully applied to the two canonical
+ problems of empirical asset pricing: predicting returns in the cross section
+ and time series.
+\end_layout
+
+\begin_layout Standard
+The literature has accumulated a staggering list of predictors that various
+ researchers have argued possess forecasting power for returns.
+ The number of stock-level predictive characteristics reported in the literature
+ numbers in the hundreds and macroeconomic predictors of the aggregate market
+ number in the dozens.
+ Additionally, predictors are often close cousins and highly correlated.
+ Traditional prediction methods break down when the predictor count approaches
+ the observation count or predictors are highly correlated.
+ With an emphasis on variable selection and dimension reduction techniques,
+ machine learning is well suited for such challenging prediction problems
+ by reducing degrees of freedom and condensing redundant variation among
+ predictors.
+\end_layout
+
+\begin_layout Standard
+Moreover, there is ambiguity regarding functional forms through which the
+ high-dimensional predictor set enter into risk premia.
+ Should they enter linearly? If nonlinearities are needed, which form should
+ they take? Must we consider interactions among predictors? Such questions
+ rapidly proliferate the set of potential model specifications.
+\end_layout
+
+\begin_layout Standard
+Three aspects of machine learning make it well suited for problems of ambiguous
+ functional form.
+ The first is its diversity.
+ As a suite of dissimilar methods it casts a wide net in its specification
+ search.
+ Second, with methods ranging from generalized linear models to regression
+ trees and neural networks, machine learning is explicitly designed to approxima
+te complex nonlinear associations.
+ Third, parameter penalization and conservative model selection criteria
+ complement the breadth of functional forms spanned by these methods in
+ order to avoid overfit biases and false discovery.
+\end_layout
+
+\begin_layout Standard
+Moreover, macroeconomic signals seem to substantially improve out-of-sample
+ performance, especially when non-linear features are incorporated via machine
+ learning.
+\end_layout
+
+\begin_layout Section
+Literature Review
+\end_layout
+
+\begin_layout Standard
+Main references:
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Rapach-et-al-2019"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Weigand-2019"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Kozak-et-al-2019"
+literal "false"
+
+\end_inset
+
+,
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Freyberger-et-al-2018"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Feng-et-al-2018a"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Messmer-2017"
+literal "false"
+
+\end_inset
+
+,
+\series bold
+\shape italic
+\color purple
+ 
+\series default
+\shape default
+\color black
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Liew-Mayster-2017"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Gu-et-al-2019b"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Popescu-2019"
+literal "false"
+
+\end_inset
+
+,
+\color inherit
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "JPMorgan-2017"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Messmer-Audrino-2017"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Feng-et-al-2018b,Feng-et-al-2019"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Bianchi-et-al-2019a"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Chen-et-al-2019a"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Other relevant references include:
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Simonian-et-al-2019"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Brogaard-Zareei-2018"
+literal "false"
+
+\end_inset
+
+,
+\color black
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Li-et-al-2020a"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Feng-et-al-2019b"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Bryzgalova-et-al-2019,Bryzgalova-et-al-2019a"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Choi-et-al-2019b"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Harvey-Liu-2019a"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Kozak-et-al-2019"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Gu-et-al-2019"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Forecasting approaches
+\end_layout
+
+\begin_layout Subsection
+To be added
+\end_layout
+
+\begin_layout Section
+Metrics for assessing forecast performance
+\end_layout
+
+\begin_layout Standard
+There are many measures available in the forecasting literature for evaluating
+ the performances of forecasting method, as described in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Makridakis-et-al-2019a,Makridakis-et-al-2018a,Hyndman-Athanasopoulos-2019"
+literal "false"
+
+\end_inset
+
+.
+ A comprehensive list of metrics is presented in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Botchkarev-2019,Gasthaus-et-al-2019"
+literal "false"
+
+\end_inset
+
+.
+ Other references on such metrics include 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Ryll-Seidens-2019,Petropoulos-et-al-2018a,Siliverstovs-2017a"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "deKok-2017,Fan-et-al-2017a,Hsiao-Wan-2014"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Cheng-et-al-2019,Chiu-et-al-2019,Granziera-Sekhposyan-2019,Gibbs-2017,Hyndman-Koehler-2006,Jin-et-al-2015,Kim-Durmaz-2012,Samuels-Sekkel-2017"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Performance measures for point forecasts for M4 competition
+\end_layout
+
+\begin_layout Standard
+For M4 competition it was decided to use the average, referred to as the
+ overall weighted average (OWA), of two of the most popular accuracy measures:
+\end_layout
+
+\begin_layout Itemize
+symmetric mean absolute percentage error sMAPE
+\begin_inset Formula 
+\[
+sMAPE\triangleq{\displaystyle \frac{2}{h}}\sum_{t=n+1}^{n+h}\frac{{\displaystyle \left|Y_{t}-\widehat{Y_{t}}\right|}}{\left|Y_{t}\right|+\left|\widehat{Y_{t}}\right|}*100\left(%\%
+\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+mean absolute scaled error M
+\begin_inset Formula 
+\[
+sMAPE\triangleq{\displaystyle \frac{1}{h}}{\displaystyle \frac{{\displaystyle \sum_{t=n+1}^{n+h}\left|Y_{t}-\widehat{Y_{t}}\right|}}{{\displaystyle \frac{1}{n-m}{\displaystyle \sum_{t=m+1}^{n}\left|Y_{t}-Y_{t-m}\right|}}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $Y_{t}$
+\end_inset
+
+ is the value of the time series at point 
+\begin_inset Formula $t$
+\end_inset
+
+, 
+\begin_inset Formula ${\displaystyle \widehat{Y_{t}}}$
+\end_inset
+
+ the estimated forecast, 
+\begin_inset Formula $h$
+\end_inset
+
+ the forecasting horizon, 
+\begin_inset Formula $n$
+\end_inset
+
+ the number of the data points available in-sample, and 
+\begin_inset Formula $m$
+\end_inset
+
+ the time interval between successive observations considered for each data
+ frequency, i.e., 12 for monthly, four for quarterly, 24 for hourly and one
+ for yearly, weekly and daily data.
+\end_layout
+
+\begin_layout Standard
+The first measure uses percentage errors that are scale independent, intuitive
+ to understand and part of an everyday vocabular.
+ The second measure aims to correct some potential problems of the first
+ and to provide an alternative with better mathematical properties 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Franses-2016"
+literal "false"
+
+\end_inset
+
+.
+ For instance, the proposed MASE has a defined mean and a finite variance,
+ is scale-independent and can be computed for a single forecast horizon,
+ being less than one if it arises from a better forecast than the average
+ one-step Naive S forecast (Forecasts are equal to the last known observation
+ of the same period) computed in-sample, and vice-versa
+\end_layout
+
+\begin_layout Standard
+The OWA of sMAPE and MASE was computed by first dividing their total value
+ by the corresponding value of Naive 2 (random walk model, seasonally adjusted,
+ if needed) to obtain the relative sMAPE and the relative MASE, respectively,
+ and then computing their simple arithmetic mean.
+\end_layout
+
+\begin_layout Subsection
+Performance measures for prediction intervals for M4 competition
+\end_layout
+
+\begin_layout Standard
+The M4 Competition adopted a 95% prediction interval (PI) for estimating
+ the uncertainty around the point forecasts.
+ The performances of the generated PIs were evaluated using the Mean Scaled
+ Interval Score (MSIS) described in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Makridakis-et-al-2019a"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Practical Info
+\end_layout
+
+\begin_layout Subsection
+Software
+\end_layout
+
+\begin_layout Standard
+The recommended software packages:
+\end_layout
+
+\begin_layout Itemize
+R version 3.6.3
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+NOTE: until further notice, please do NOT use R 4.0.0 (or newer) for this
+ project
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Python 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+latest version of 3.8 (currently 3.8.3), or 
+\end_layout
+
+\begin_layout Itemize
+Python 3.7.6, or 
+\end_layout
+
+\begin_layout Itemize
+Anaconda Python 3 latest version (currently 2020.02 for Python 3.7)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+RStudio Desktop Open Source latest version (currently 1.3.959)
+\end_layout
+
+\begin_layout Itemize
+PyCharm Community Edition latest version (currently 2020.1.1)
+\end_layout
+
+\begin_layout Itemize
+LyX latest version (currently 2.3.4)
+\end_layout
+
+\begin_layout Itemize
+JabRef latest version: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+latest official version (5.0), or 
+\end_layout
+
+\begin_layout Itemize
+latest development version 5.1 (from 
+\begin_inset CommandInset href
+LatexCommand href
+name "JabRef website"
+target "https://builds.jabref.org/master/"
+literal "false"
+
+\end_inset
+
+)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+TexLive latest version (currently 2020)
+\end_layout
+
+\begin_layout Itemize
+R packages (to be discussed)
+\end_layout
+
+\begin_layout Itemize
+Python packages (to be discussed)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "Git for desktop"
+target "https://git-scm.com/downloads"
+literal "false"
+
+\end_inset
+
+ latest version (currently 2.26.2)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Datasets
+\end_layout
+
+\begin_layout Standard
+The following datasets are suggested
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.2}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Daily data sets
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="17" columns="4">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0pt">
+<column alignment="left" valignment="top" width="6.5cm">
+<column alignment="left" valignment="top" width="0pt">
+<column alignment="left" valignment="top" width="6.5cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+BCOMTR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Bloomberg Commodity Index Total Return
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+RU20VATR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+iShares Russell 2000 Value ETF
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+HFRIFWI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+HFRI Fund Weighted Composite Index
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+RUMCINTR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+iShares Russell Mid-Cap ETF
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+LBUSTRUU
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Bloomberg Barclays US Aggregate Bond Index
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+RUMRINTR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+iShares Micro-Cap ETF
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+LG30TRUU
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Bloomberg Barclays Global High Yield Total Return Index Value Unhedge
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+RUTPINTR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+iShares Russell Top 200 ETF
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+LMBITR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Bloomberg Barclays Municipal Bond Index Total Return Index Value Unhedged
+ USD
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S5COND
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S&P 500 Consumer Discretionary Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+NDDUE15X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Amundi MSCI Europe Ex UK Ucits ETF Dr
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S5CONS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S&P 500 Consumer Staples Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+NDDUJN
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+MSCI Japan Index
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S5ENRS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S&P 500 Energy Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+NDDUNA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+iShares MSCI North America UCITS ETF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S5FINL
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S&P 500 Financials Sector GICS Level 1 Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+NDDUPXJ
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+MSCI Pacific ex Japan UCITS ETF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S5HLTH
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S&P 500 Health Care Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+NDDUUK
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+iShares MSCI UK ETF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S5INDU
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S&P 500 Industrials Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+NDDUWXUS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+MSCI World ex USA total net return
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S5INFT
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S&P 500 Information Technology Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+NDUEEGF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+SPDR MSCI Emerging Markets UCITS ETF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S5MATR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S&P 500 Materials Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+RU10GRTR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+iShares Russell 1000 Growth ETF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S5RLST
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S&P 500 Real Estate Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+RU10VATR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ iShares Russell 1000 Value ETF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S5TELS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S&P 500 Communication Services Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+RU20GRTR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ iShares Russell 2000 Growth ETF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S5UTIL
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S&P 500 Utilities Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+RU20INTR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Russell 2000 Total Return
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+SPXT
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Proshares S&P 500 EX Technology ETF
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.1in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.2}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Monthly data sets
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="12" columns="4">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0pt">
+<column alignment="left" valignment="top" width="6.5cm">
+<column alignment="left" valignment="top" width="0pt">
+<column alignment="left" valignment="top" width="6.5cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+IBXXSHY1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+iShares 0-5 Year High Yield Corporate Bond ETF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+M2USEV
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+MSCI USA Enhanced Value Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+IDCT20RT
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ICE U.S.
+ Treasury 20+ Year Bond Total Return Index
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+M2USRWGT
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+MSCI USA Risk Weighted Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+LBUSTRUU
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Bloomberg Barclays US Agg Total Return Value Unhedged USD
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+M2USSNQ
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+MSCI USA Sector Neutral Quality Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+LC07TRUU
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Bloomberg Barclays U.S.
+ Universal Total Return Index Value Unhedged
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+MID
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S&P 400 Mid Cap Index index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+LD01TRUU
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Bloomberg Barclays 1-3 Yr Credit Total Return Index Value Unhedged US
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+MXEA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+MSCI EAFE Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+LT01TRUU
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Bloomberg Barclays US Treasury 1-3 Year Index
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+MXEF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+MSCI Emerging Markets Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+LUICTRUU
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Bloomberg Barclays U.S.
+ Intermediate Credit Total Return Index
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+MXUSMVOL
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+MSCI USA Minimum Volatility Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+LULCTRUU
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Bloomberg Barclays U.S.
+ Long Credit Index
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+MXWD
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+MSCI All Countries World Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+M1CXBRU
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+iShares Core MSCI International Developed Markets ETF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+MXWOUIM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+MSCI All Countries World Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+M1USMVOL
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+MSCI USA Minimum Volatility (USD) Index
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+NDDUUS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+MSCI Daily Total Return Net USA USD Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+M2US000$
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+iShares Edge MSCI USA Momentum Factor ETF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+SPX
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S&P 500 Index
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.0}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "../Bibliography/ML_empirical_asset_pricing_risk_premia_forecasting"
+options "bibtotoc"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+appendix
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{section}{Appendix A: Tidy data concepts and tidyverse
+ R universe} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+section*{Appendix A: Tidy data concepts and tidyverse R universe} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{appendix:AppendixA}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+theequation}{A.
+\backslash
+arabic{equation}} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{equation}{0}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+One can organize tabular data in many ways.
+ While at first glance such data sets can be view as interchangeable since
+ they display the same information, tidy datasets are easier to manipulate,
+ model and visualize, due to their specific structure.
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+\color brown
+Tidy data
+\shape default
+\color inherit
+ can be described as data with a consistent form: in brief, every variable
+ goes in a column, and every column is a variable.
+ It has following characteristics:
+\end_layout
+
+\begin_layout Enumerate
+Each column should contain one variable.
+\end_layout
+
+\begin_layout Enumerate
+Each observation of that variable should be in a different row.
+ 
+\end_layout
+
+\begin_layout Enumerate
+There should be a different table for each type entity.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Multiple tables that are related should have a column that links the tables
+ together (referential integrity).
+ 
+\end_layout
+
+\begin_layout Standard
+There are two main advantages of using tidy data:
+\end_layout
+
+\begin_layout Itemize
+consistent way of storing data makes it easier to learn the tools that work
+ with it because they have an underlying uniformity, which in turns makes
+ the process be less error prone.
+\end_layout
+
+\begin_layout Itemize
+placing variables in columns allows for vectored operations.
+ 
+\end_layout
+
+\begin_layout Standard
+Tidyverse collection of R packages was developed as a universe of packages
+ that leverage properties of tidy data structures.
+ These packages aim to cover the whole spectrum of data analysis within
+ R, each supporting the others in concepts and output.
+ All packages share an underlying design philosophy, grammar, and data structure
+s.
+ 
+\end_layout
+
+\begin_layout Standard
+The list of 
+\begin_inset CommandInset href
+LatexCommand href
+name "Tidyverse packages"
+target "https://www.tidyverse.org/packages/"
+literal "false"
+
+\end_inset
+
+ (or tidyverse-related packages) include:
+\end_layout
+
+\begin_layout Itemize
+dplyr: grammar of data manipulation, providing a consistent set of verbs
+ that solve the most common data manipulation challenges 
+\end_layout
+
+\begin_layout Itemize
+tidyr: set of functions that help you get to tidy data (every variable goes
+ in a column, and every column is a variable).
+\end_layout
+
+\begin_layout Itemize
+ggplot2: system for declaratively creating graphics, based on The Grammar
+ of Graphics.
+ You provide the data, tell ggplot2 how to map variables to aesthetics,
+ what graphical primitives to use, and it takes care of the details
+\end_layout
+
+\begin_layout Itemize
+tibble: modern re-imagining of the data frame, keeping what time has proven
+ to be effective, and throwing out what it has not.
+ Tibbles are data.frames that are lazy and surly: they do less and complain
+ more forcing you to confront problems earlier, typically leading to cleaner,
+ more expressive code 
+\end_layout
+
+\begin_layout Itemize
+purrr: complete and consistent set of tools for working with functions and
+ vectors, allowing you to replace many for loops with code that is easier
+ to write and more expressive
+\end_layout
+
+\begin_layout Itemize
+magrittr: provides the pipe, %>% used throughout the tidyverse.
+ It also provide a number of more specialised piping operators (like %$%
+ and %<>%) 
+\end_layout
+
+\begin_layout Itemize
+broom: turn statistical models into tidy data frames/tiddles
+\end_layout
+
+\begin_layout Itemize
+dbplyr: A 'dplyr' Back End for Databases
+\end_layout
+
+\begin_layout Itemize
+lubridate: functions to work with date-times and time-spans
+\end_layout
+
+\begin_layout Itemize
+hms: for time-of-day
+\end_layout
+
+\begin_layout Itemize
+readxl: Read Excel Files
+\end_layout
+
+\begin_layout Itemize
+readr: fast and friendly way to read rectangular data (like csv, tsv, and
+ fwf)
+\end_layout
+
+\begin_layout Itemize
+stringr: cohesive set of functions designed to make working with strings
+ as easy as possible.
+ It is built on top of stringi, which uses the ICU C library to provide
+ fast, correct implementations of common string manipulations.
+\end_layout
+
+\begin_layout Itemize
+glue provides an alternative to paste() that makes it easier to combine
+ data and strings.
+\end_layout
+
+\begin_layout Itemize
+jsonlite: for JSON files
+\end_layout
+
+\begin_layout Itemize
+rvest: for web scraping.
+\end_layout
+
+\begin_layout Itemize
+tidyquant: wrapper to various 'xts', 'zoo', 'quantmod', 'TTR' and 'PerformanceAn
+alytics' package functions
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "tidymodels"
+target "https://www.tidymodels.org/packages/"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+rsample: infrastructure for efficient data splitting and resampling.
+\end_layout
+
+\begin_layout Itemize
+parsnip: tidy, unified interface to models
+\end_layout
+
+\begin_layout Itemize
+recipes: tidy interface to data pre-processing tools for feature engineering
+\end_layout
+
+\begin_layout Itemize
+workflows: bundle your pre-processing, modeling, and post-processing together
+\end_layout
+
+\begin_layout Itemize
+tune: optimize the hyperparameters of your model and pre-processing steps
+\end_layout
+
+\begin_layout Itemize
+yardstick: measures the effectiveness of models using performance metrics
+\end_layout
+
+\begin_layout Itemize
+broom: converts the information in common statistical R objects into user-friend
+ly, predictable formats
+\end_layout
+
+\begin_layout Itemize
+dials: creates and manages tuning parameters and parameter grids
+\end_layout
+
+\begin_layout Itemize
+infer: high-level API for tidyverse-friendly statistical inference.
+\end_layout
+
+\begin_layout Itemize
+corrr: tidy interfaces for working with correlation matrices
+\end_layout
+
+\begin_layout Itemize
+discrim: definitions for discriminant analysis models
+\end_layout
+
+\begin_layout Itemize
+rules: definitions for rule-based classification and regression models.
+\end_layout
+
+\begin_layout Itemize
+embed: contains steps to create embeddings or projections of predictors
+\end_layout
+
+\begin_layout Itemize
+textrecipes: extra steps for text processing
+\end_layout
+
+\begin_layout Itemize
+themis: can help alleviate class imbalance using sampling methods.
+\end_layout
+
+\begin_layout Itemize
+probably: tools for post-processing class probability estimates.
+\end_layout
+
+\begin_layout Itemize
+tidyposterior: statistical comparisons between models using resampling and
+ Bayesian methods.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "tidyverts: tidy tools for time series"
+target "https://tidyverts.org/"
+literal "false"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+tsibble: built on top of tibble, for manipulating and analysing temporal
+ data
+\end_layout
+
+\begin_layout Itemize
+fable: tidy forecasting
+\end_layout
+
+\begin_layout Itemize
+feasts: feature extraction and statistics
+\end_layout
+
+\end_body
+\end_document
