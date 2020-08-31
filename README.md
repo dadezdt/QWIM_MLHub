@@ -1,13 +1,8 @@
-# Applications of machine learning for empirical asset pricing and risk premia forecasting
-For QWIM Project in applications of machine learning.
+# Machine learning for index price prediction and portfolio weight optimization
+For NYU industrial-hosted project - BofA QWIM(Quantitative Wealth and Investment Management) 
 ## Team Information:
 Team Name: MLHub  
 Team Member: Xin Gu xg848@nyu.edu, Dingtian Zhu dz1388@nyu.edu
 
 ## Description
-Relative to traditional empirical methods in asset pricing, machine learning accommodates a far more expansive
-list of potential predictor variables, as well as richer specifications of functional form. Machine learning methods
-can be successfully applied to the two canonical problems of empirical asset pricing: predicting returns in the cross
-section and time series.
-
-This project will do some work contributing ML applications in empirical asset pricing.
+Here we want to use machine learning methods, mainly to build a LSTM-RNN model, to realize an automated prediction for index price using historical daily price data. The model would mainly help investors in asset allocation and portfolio construc- tion. Stock-level predictive characteristics and macro-economical factors could be added on the base of our model to build more complicated ones for stock price prediction or to improve performance.
